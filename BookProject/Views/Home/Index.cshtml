@@ -7,16 +7,25 @@
     <head>
         <title>BookProject</title>
        <link href="~/css/site.css" rel="stylesheet" />
+       <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
     </head>
-    <body>
-         <img src="~/images/logo.png" class="demo" alt=logo/>
-        <h1>Book Project</h1>
-        <h3>@DateTime.Now.ToString("dd MMM yyyy")</h3>
+    <body class="container">
+         <img src="~/images/logo.png" alt="logo" class="demo"/>
+        <h1 class="h1">Book Project</h1>
+        <h3 class="h3">@DateTime.Now.ToString("dd MMM yyyy")</h3>
+        <input type="button" class="btn btn-danger" value="Click Me"/>
        
     <p>This is The BookProject web Application</p>
-    <img src="~/Newbee/card.jpg" class="demo" alt=logo/>
     </body>
+    <script src="~/lib/jquery/jquery.js"></script>
 </html>
+
+<script>
+    $(document).ready(function()
+    {
+        alert("Welcome to AlphaX");
+    })
+</script>
 
 
  
