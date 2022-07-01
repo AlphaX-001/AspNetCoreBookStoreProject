@@ -35,5 +35,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+    
+    //pattern: "bookapp/{controller=Home}/{action=Index}/{id?}");                /can add aattribute like that on URL
 
 app.Run();

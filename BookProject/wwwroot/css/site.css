@@ -5,13 +5,50 @@
     width:200px;
     margin-left:initial;
 }
-.custom{
-   margin:50px;
-}
-.jumbotron
+.tithead
 {
-    background:none;
+    color:lightgray;
+
 }
+.footer{
+    bottom:0;
+    width:100%;
+    height:40px;
+    line-height:30px;
+    position:absolute;
+}
+html{
+        position:relative;
+        min-height:100%;    
+}
+body{
+    margin-bottom:60px;
+}
+.btn {
+    padding: .45rem 1.5rem .35rem;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #c471f5;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(196, 113, 245, 1), rgba(250, 113, 205, 1));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(196, 113, 245, 1), rgba(250, 113, 205, 1))
+}
+.downnav {
+    background: #c5cfd1;
+
+}
+.txtcolor {
+    color: #ff9cf8;
+}
+.img-fluid{
+    max-width:100%;
+    height:100%;
+}
+
+
 /*.card{
     height:100px;
 }*/

@@ -1,0 +1,97 @@
+﻿@model BookModel;
+@{
+    ViewData["Title"] = @Model.Title;
+}
+
+<div class="container">
+	<h3 class="display-5">Book Details</h3>
+    <hr />
+	<div class="row">
+		<div class="col-md-6">
+			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="~/images/bk4.jpeg" class="d-block w-100" alt="..." height="500px">
+    </div>
+    <div class="carousel-item">
+      <img src="~/images/bk2.jpeg" class="d-block w-100" alt="..." height="500px">
+    </div>
+    <div class="carousel-item">
+      <img src="~/images/bk3.jpeg" class="d-block w-100" alt="..." height="500px">
+    </div>
+    
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+		</div>
+		<div class="col-md-6">
+            <div class="container">
+                 <h1 class="display-2">@Model.Title</h1>
+                 <p class="text-info">&nbsp;By: @Model.Author</p>
+                 <p class="p-2">In this Section we will Provide the Description of the Selected book, In this Case the Selected book is @Model.Title by @Model.Author .This is a very Good book, @Model.Description</p>
+                 
+                 <div class="row">
+                 <div class="col-md-4">
+                 <button class="btn btn-outline-primary">
+                    Read Now
+                 </button>
+                 </div>
+                 </div>
+             </div>
+             <br />
+             <ul class="list-group">
+                 <li class="list-group-item"><span class="font-weight-bold">
+                     Category - 
+                 </span>@Model.Category</li>
+                 <li class="list-group-item"><span class="font-weight-bold">
+                     Total Pages - 
+                 </span>@Model.Pages</li>
+                 <li class="list-group-item"><span class="font-weight-bold">
+                     language - 
+                 </span>@Model.Language</li>
+                 @*<li class="list-group-item"><span class="font-weight-bold  align-content-center"><a href="/book/allbooks" class="btn btn-outline-success">View All Books</a></span></li>*@
+             </ul>
+             
+                 <br />
+                 <a asp-controller="book" asp-action="allbooks" class="btn btn-outline-success">View All Books</a>
+		</div>
+	</div>
+    <br />
+    <hr />
+    <div class="py-5 bg-light" id="simmilarbooks">
+        <h3 class="h3">Simmilar Books</h3>
+        <div class="row">
+            @for (int i = 0; i < 4; i++)
+            {
+                <div class="col-md-3">
+                  <div class="card mb-4 shadow-sm">
+                      <img src="~/images/book.png" alt="Image"/>
+                      
+                      <div class="card-body">
+                          <h4 class="card-text">Book Name - @(i+1)</h4>
+                          <p class="card-texr">Book Description</p>
+                          <div class="d-flex justify-content-between align-items-center">                            
+                              <div class="btn-group">
+                                  <a href="#" class="btn btn-sm btn-outline-secondary">View details</a>
+                              </div>
+                              <small class="text-muted">Author: Author Name</small>
+                          </div>
+                      </div>
+                  </div>
+           </div>
+            }
+        </div>
+    </div>
+</div>

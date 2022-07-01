@@ -19,7 +19,7 @@ namespace BookProject.Controllers
 
         }
 
-
+        [Route("Book-Details/{id}", Name = "bookDetails")]
         public IActionResult GetBooks(int id)
         {
             var books = _bookRepo.GetBooksById(id);

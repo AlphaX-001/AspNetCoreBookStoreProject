@@ -1,41 +1,47 @@
-﻿@model IEnumerable<BookProject.Models.BookModel>
-
+﻿@model IEnumerable<BookModel>
 @{
-    Layout = "_Layout";
+    ViewData["Title"] = "All Books";
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author)
-            </td>
-            @*<td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>*@
-        </tr>
-}
-    </tbody>
-</table>
+<div class="py-5 bg-light">
+<div class="container">
+    <div class="row">
+        <h1 class="display-4 ">All Books</h1>
+        <hr />
+        @{int i=0;}
+        @foreach(var books in Model)
+        {
+                i++;
+                @if(i>4)
+                {
+                    i = 1;
+                }
+                <div class="col-md-4">
+                  <div class="card mb-4 shadow-sm">
+                      <img src="~/images/bk@(i).jpeg" height="400"alt="Image"/>
+                      
+                      <div class="card-body downnav">
+                          <h4 class="card-text">@books.Title</h4>
+                          <p class="card-texr">@books.Description</p>
+                          <div class="d-flex justify-content-between align-items-center">                            
+                              <div class="btn-group">
+                                  <a a asp-route="bookDetails" asp-route-id="@books.Id" class="btn btn-sm btn-outline-secondary">View details</a>
+                              </div>
+                              <small class="text-muted">Author: @books.Author</small>
+                          </div>
+                      </div>
+                  </div>
+           </div>
+        }
+    </div>
+</div>
+</div>
+    @*asp-fragment="simmilarbooks"*@ 
+  @*@section Breadcrumb
+  {
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/home/">Home</a></li>
+                <li class="breadcrumb-item"><a href="book/allarticles">Articles</a></li>
+            </ol>
+        </nav>
+  }*@
