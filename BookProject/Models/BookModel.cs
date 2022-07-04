@@ -1,4 +1,4 @@
-﻿namespace BookProject.Models
+﻿  namespace BookProject.Models
 {
     public class BookModel
     {

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookModel>
+﻿@model IEnumerable<BookProject.Models.BookModel>
 @{
     ViewData["Title"] = "All Books";
 }
@@ -17,14 +17,14 @@
                 }
                 <div class="col-md-4">
                   <div class="card mb-4 shadow-sm">
-                      <img src="~/images/bk@(i).jpeg" height="400"alt="Image"/>
+                      <img src="~/images/bk@(i).jpeg" height="400"alt="Image"/>     @*Displaying the image by just Randomly hard coded*@
                       
                       <div class="card-body downnav">
                           <h4 class="card-text">@books.Title</h4>
                           <p class="card-texr">@books.Description</p>
                           <div class="d-flex justify-content-between align-items-center">                            
                               <div class="btn-group">
-                                  <a a asp-route="bookDetails" asp-route-id="@books.Id" class="btn btn-sm btn-outline-secondary">View details</a>
+                                  <a asp-route="bookDetails" asp-route-id="@books.Id" class="btn btn-sm btn-outline-secondary">View details</a>
                               </div>
                               <small class="text-muted">Author: @books.Author</small>
                           </div>

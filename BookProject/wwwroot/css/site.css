@@ -15,7 +15,7 @@
     width:100%;
     height:40px;
     line-height:30px;
-    position:absolute;
+    position:inherit;
 }
 html{
         position:relative;
@@ -26,6 +26,7 @@ body{
 }
 .btn {
     padding: .45rem 1.5rem .35rem;
+    text-align:right;
 }
 
 .gradient-custom {
