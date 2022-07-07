@@ -18,25 +18,27 @@ namespace BookProject.Controllers.Methods
             autoId = new AutoId(Configuration);
         }
 
-        public string AddBook(BookModel bookModel)      //Api For adding books
+        public async Task<string[]> AddBook(BookModel bookModel)      //Api For adding books
         {
-            int bkid = autoId.generateId();
+            int bkid = await autoId.generateId();
+            string[] res=new string[2];
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             SqlConnection conn = new SqlConnection(connectionstring);
             conn.Open();
 
-            string sqlcmd = "insert into allbook (id,title,author,description,category,pages,language) values " +
-                "('" + bkid + "','" + bookModel.Title + "','" + bookModel.Author + "','" + bookModel.Description + "','" + bookModel.Category + "','" + bookModel.Pages + "','" + bookModel.Language + "')";
+            string sqlcmd = "insert into allbook (id,title,author,description,category,pages,language,CreatedOn,UpdatedOn) values " +
+                "('" + bkid + "','" + bookModel.Title + "','" + bookModel.Author + "','" + bookModel.Description + "','" + bookModel.Category + "','" + bookModel.Pages + "','" + bookModel.Language + "','"+bookModel.CreatedOn+"','"+bookModel.UpdatedOn+"')";
 
             SqlCommand cmd = new SqlCommand(sqlcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             cmd = new SqlCommand(sqlcmd, conn);
-            cmd.ExecuteNonQuery();
-            string s1 = "Success";
-            return s1;
+            await cmd.ExecuteNonQueryAsync();
+            res[0] = "Success";
+            res[1] = bkid.ToString();
+            return (res);
         }
 
-        public IEnumerable<BookModel> AllBooks()    //Api for viewing All Books
+        public async Task<IEnumerable<BookModel>> AllBooks()    //Api for viewing All Books
         {
             List <BookModel> model = new List<BookModel>();
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
@@ -44,7 +46,7 @@ namespace BookProject.Controllers.Methods
             connection.Open();
             string cmd = "select * from allbook";
             SqlCommand sqlCommand = new SqlCommand(cmd, connection);
-            SqlDataReader sdr=sqlCommand.ExecuteReader();
+            SqlDataReader sdr=await sqlCommand.ExecuteReaderAsync();
             DataTable dt = new DataTable();
             dt.Load(sdr);
             foreach(DataRow book in dt.Rows)
@@ -67,7 +69,7 @@ namespace BookProject.Controllers.Methods
             return model;
         }
        
-        public BookModel GetBook(int id)    //For getting Books by Id
+        public async Task<BookModel> GetBook(int id)    //For getting Books by Id
         {
            BookModel model = new BookModel();
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
@@ -75,7 +77,7 @@ namespace BookProject.Controllers.Methods
             conn.Open();
             string cmd = "select * from allbook where id = " + id;
             SqlCommand sqlCommand = new SqlCommand(cmd, conn); 
-            SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            SqlDataReader sqlDataReader = await sqlCommand.ExecuteReaderAsync();
             DataTable dt = new DataTable();
             dt.Load(sqlDataReader);
             if(dt.Rows.Count > 0)

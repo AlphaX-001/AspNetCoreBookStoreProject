@@ -18,7 +18,7 @@ namespace BookProject.Controllers.Methods
         }
         string strsql;
 
-        public int generateId()
+        public async Task<int> generateId()
             {
             int maxid;
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
@@ -33,7 +33,7 @@ namespace BookProject.Controllers.Methods
                     {
                         con.Open(); 
                     }
-                    SqlDataReader dr = cmd.ExecuteReader(); 
+                    SqlDataReader dr =await cmd.ExecuteReaderAsync(); 
                     DataTable dt = new DataTable();
                     dt.Load(dr);
                     var output = dt.Rows[0]["id"];
@@ -42,7 +42,7 @@ namespace BookProject.Controllers.Methods
                         DataRow data = dt.Rows[0];
                         maxid = Convert.ToInt32(data["id"]);
                         maxid++;
-                        return maxid;
+                         return maxid;
                     }
                     else
                     {
