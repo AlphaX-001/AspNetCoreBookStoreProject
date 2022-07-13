@@ -12,22 +12,26 @@ namespace BookProject.Controllers.Methods
     {
         IConfiguration Configuration;
         AutoId autoId;
+        LanguageOperation languageOperations;
         public BookOperation(IConfiguration _configuration)
         {
             Configuration = _configuration;
             autoId = new AutoId(Configuration);
+            languageOperations = new LanguageOperation(Configuration);
         }
 
         public async Task<string[]> AddBook(BookModel bookModel)      //Api For adding books
         {
             int bkid = await autoId.generateId();
             string[] res=new string[2];
+            bookModel.CreatedOn = DateTime.Now.ToString("dd/MM/yyyy - hh:mm tt");
+            bookModel.UpdatedOn = DateTime.Now.ToString("dd/MM/yyyy - hh:mm tt");
+            string SelectedLanguage = languageOperations.SelectLang(Convert.ToInt32(bookModel.Language));
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             SqlConnection conn = new SqlConnection(connectionstring);
             conn.Open();
 
-            string sqlcmd = "insert into allbook (id,title,author,description,category,pages,language,CreatedOn,UpdatedOn) values " +
-                "('" + bkid + "','" + bookModel.Title + "','" + bookModel.Author + "','" + bookModel.Description + "','" + bookModel.Category + "','" + bookModel.Pages + "','" + bookModel.Language + "','"+bookModel.CreatedOn+"','"+bookModel.UpdatedOn+"')";
+            string sqlcmd = "insert into allbook (id,title,author,description,category,pages,language,CreatedOn,UpdatedOn)values"+"('" + bkid + "','" + bookModel.Title + "','" + bookModel.Author + "','" + bookModel.Description + "','" + bookModel.Category + "','" + bookModel.Pages + "','" + SelectedLanguage + "','"+bookModel.CreatedOn+"','"+bookModel.UpdatedOn+"')";
 
             SqlCommand cmd = new SqlCommand(sqlcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -91,6 +95,8 @@ namespace BookProject.Controllers.Methods
                         model.Category = (book["category"]).ToString();
                         model.Pages = Convert.ToInt32(book["pages"]);
                         model.Language = book["language"].ToString();
+                        model.CreatedOn =(book["CreatedOn"]).ToString();
+                        model.UpdatedOn =(book["UpdatedOn"]).ToString();
 
                         return model;
             }

@@ -2,6 +2,7 @@
 using BookProject.Models;
 using BookProject.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 
 namespace BookProject.Controllers
@@ -12,7 +13,7 @@ namespace BookProject.Controllers
         private readonly IConfiguration Configuration;
         //AutoId autoId;
         BookOperation bookOperation;
-
+        LanguageOperation languageOperation;
         //------------------------------------------------------ //Constructar
 
         public BookController(IConfiguration _configuration)        
@@ -20,6 +21,7 @@ namespace BookProject.Controllers
             _bookRepo=new BookRepo();
             Configuration = _configuration;
             bookOperation = new BookOperation(Configuration);
+            languageOperation = new LanguageOperation(Configuration);
             //autoId = new AutoId(Configuration);
            
         }
@@ -58,10 +60,14 @@ namespace BookProject.Controllers
             
         }
         [HttpGet]
-        public IActionResult AddNewBook(string result, string id)
+        public IActionResult AddNewBook(string? result, string? id)
         {
             ViewBag.id=id;
-            ViewBag.result=result;   
+            ViewBag.result=result;
+
+
+            //ViewBag.Language = new SelectList(GetLanguage(),"Id","Text");
+            ViewBag.Language = languageOperation.AllLang();
             return View();
         }
 
@@ -77,18 +83,95 @@ namespace BookProject.Controllers
                 {
                     return RedirectToAction("AddNewBook", new { result = s1[0], id = s1[1] });
                 }
-                else
-                {
-                    // return Content("Failed Adding Operation of " + bookModel.Title);
-                    ViewBag.id = 0;
-                    ViewBag.result = "Failed";
-                    return View();
-                }
             }
+            ViewBag.Language = languageOperation.AllLang();
             ViewBag.id = 0;
             ViewBag.result = "Failed";
             return View();
 
         }
+
+        ////This Private Method will Return All the Languages along with their ID's
+        //private List<SelectListItem> GetLanguage()
+        //{
+        //    //var group1 = new SelectListGroup() { Name = "Global Language" };
+        //    //var group2 = new SelectListGroup() { Name = "Indian Language" };
+        //    //var group3 = new SelectListGroup() { Name = "Foreign Language" };
+
+        //    return new List<SelectListItem>()
+        //    {
+        //         new SelectListItem
+        //        {
+        //            Value = "1",
+        //            Text ="French",
+        //            //Group=group3,
+
+        //        },new SelectListItem
+        //        {
+        //            Value = "2",
+        //            Text ="German",
+        //            //Group=group3,
+        //        },new SelectListItem
+        //        {
+        //            Value = "3",
+        //            Text ="Bengali",
+        //            //Group=group2,
+        //        },new SelectListItem
+        //        {
+        //            Value = "4",
+        //            Text ="Dutch",
+        //            //Group=group3,
+        //        },new SelectListItem
+        //        {
+        //            Value = "5",
+        //            Text ="Spanish",
+        //            //Group=group3,
+        //        },new SelectListItem
+        //        {
+        //            Value = "6",
+        //            Text ="English",
+        //            //Group=group1,
+        //        },new SelectListItem
+        //        {
+        //            Value = "7",
+        //            Text ="Hindi",
+        //            //Group=group2,
+        //        },
+        //    };
+
+        //    //return new List<Languages>()
+        //    //{
+        //    //    new Languages
+        //    //    {
+        //    //        Id = 1,
+        //    //        Text ="French",
+        //    //    },new Languages
+        //    //    {
+        //    //        Id = 2,
+        //    //        Text ="German",
+        //    //    },new Languages
+        //    //    {
+        //    //        Id = 3,
+        //    //        Text ="Bengali",
+        //    //    },new Languages
+        //    //    {
+        //    //        Id = 4,
+        //    //        Text ="Dutch",
+        //    //    },new Languages
+        //    //    {
+        //    //        Id = 5,
+        //    //        Text ="Spanish",
+        //    //    },new Languages
+        //    //    {
+        //    //        Id = 6,
+        //    //        Text ="English",
+        //    //    },new Languages
+        //    //    {
+        //    //        Id = 7,
+        //    //        Text ="Hindi",
+        //    //    },
+        //    //};
+
+        //}
     }
 }

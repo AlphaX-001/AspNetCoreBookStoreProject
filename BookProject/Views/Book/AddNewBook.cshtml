@@ -1,4 +1,5 @@
-﻿@model BookModel;
+﻿@using BookProject.Enums;
+@model BookModel;
 @{
 	ViewData["Title"]="Add Books";
 }
@@ -18,41 +19,82 @@
 	@{
 		ViewBag.result = "Failed";
 	}
-	<form method="post" asp-action="AddNewBook" asp-controller="book" >
+	<form method="post" asp-action="AddNewBook" asp-controller="book">
+		<div asp-validation-summary="All" class="text-danger"></div>
+		<hr />
 		<div class="form-group">
 			<label asp-for="Title"></label>
 			<input asp-for="Title" class="form-control" />
-			<span asp-validation-for="Title" class="text-danger"></span>
+			@*<span asp-validation-for="Title" class="text-danger"></span>*@
 		</div>
+		<br />
 		<div class="form-group">
 			<label asp-for="Author"></label>
 			<input asp-for="Author" class="form-control" />
-			<span asp-validation-for="Author" class="text-danger"></span>
+			@*<span asp-validation-for="Author" class="text-danger"></span>*@
 		</div>
+		<br />
 		<div class="form-group">
 			<label asp-for="Description"></label>
 			<textarea asp-for="Description" class="form-control"></textarea>
-			<span asp-validation-for="Description" class="text-danger"></span>
+			@*<span asp-validation-for="Description" class="text-danger"></span>*@
 		</div>
+		<br />
 		<div class="form-group">
 			<label asp-for="Pages"></label>
-			<input asp-for="Pages" class="form-control" />
-			<span asp-validation-for="Pages" class="text-danger"></span>
+			<input asp-for="Pages" class="form-control"  min="0"/>
+			@*<span asp-validation-for="Pages" class="text-danger"></span>*@
 		</div>
+		<br />
 		<div class="form-group">
 			<label asp-for="Category"></label>
 			<input asp-for="Category" class="form-control" />
-			<span asp-validation-for="Category" class="text-danger"></span>
-		</div>
-		<div class="form-group">
-			<label asp-for="Language"></label>
-			<input asp-for="Language" class="form-control" />
-			<span asp-validation-for="Language" class="text-danger"></span>
+			@*<span asp-validation-for="Category" class="text-danger"></span>*@
 		</div>
 		<br />
-		<div class="align-content-lg-center">
-			<button class="btn btn-success">Add Book</button>
+
+		<div class="form-group">
+			<label asp-for="Language"></label>
+			<select asp-for="Language" class="form-control" asp-items="@ViewBag.Language">
+				<option value="" selected >Select a Language</option>
+			</select>
 		</div>
+
+
+
+@*//This dropdown is for selecting values from enum in 'LanguageEnum' class*@
+		@*<div class="form-group">
+			<label asp-for="_languageEnum"></label>
+			<select asp-for="_languageEnum" class="form-control" asp-items="Html.GetEnumSelectList<LanguageEnum>()">
+				<option value="" selected >Select a Language</option>
+			</select>
+		</div>*@
+
+@*//The Validation and hard coded options od this Dropdown 
+			<span asp-validation-for="Language" class="text-danger"></span>
+				<option>French</option>
+				<option>German</option>
+				<option>Bengali</option>
+				<option>Dutch</option>
+				<option>Spanish</option>
+				<option >English</option>
+				<option>Hindi</option>*@
+				
+@*//This Dropdown is for selecting Multi values	
+		<div class="form-group">
+			<label asp-for="MultiLanguage"></label>
+			<select asp-for="MultiLanguage" class="form-control" asp-items="@ViewBag.Language" multiple>
+				<option value="" selected >Select a Language</option>
+			</select>
+		</div>*@
+		
+		<br />
+		<div class="align-content-lg-center">
+			<center><button class="btn btn-success">Add Book</button></center>
+		</div>
+		<br />
+		<hr />
+
 	</form>
 </div>
 
