@@ -19,47 +19,61 @@
 	@{
 		ViewBag.result = "Failed";
 	}
-	<form method="post" asp-action="AddNewBook" asp-controller="book">
-		<div asp-validation-summary="All" class="text-danger"></div>
+	<div class="d-flex justify-content-center">
+	  <div class="spinner-border" role="status" id="myLoader" style="display:none">
+		<span class="sr-only"></span>
+	  </div>
+	</div>
+	@*  data-ajax-loading="#myLoader"*@
+	<form method="post" asp-action="AddNewBook" asp-controller="book"
+		data-ajax="true" 
+		data-ajax-complete="myComplete"
+		data-ajax-success="mySuccess"
+		data-ajax-failure="myFailure"
+		data-ajax-loading="#myLoader">
+
+		@*<div asp-validation-summary="All" class="text-danger"></div>*@
+
 		<hr />
 		<div class="form-group">
 			<label asp-for="Title"></label>
-			<input asp-for="Title" class="form-control" />
-			@*<span asp-validation-for="Title" class="text-danger"></span>*@
+			<input asp-for="Title" class="form-control" style="margin-top:10px;"/>
+			<span asp-validation-for="Title" class="text-danger"></span>
 		</div>
 		<br />
 		<div class="form-group">
 			<label asp-for="Author"></label>
-			<input asp-for="Author" class="form-control" />
-			@*<span asp-validation-for="Author" class="text-danger"></span>*@
+			<input asp-for="Author" class="form-control" style="margin-top:10px;" />
+			<span asp-validation-for="Author" class="text-danger"></span>
+		</div>
+		<br />
+		<div class="form-group">
+			<label asp-for="Language"></label>
+			<select asp-for="Language" style="margin-top:10px;" class="form-control" asp-items="@ViewBag.Language">
+				<option value="" selected >Select a Language</option>
+			</select>
+			<span asp-validation-for="Language" class="text-danger"></span>
 		</div>
 		<br />
 		<div class="form-group">
 			<label asp-for="Description"></label>
-			<textarea asp-for="Description" class="form-control"></textarea>
-			@*<span asp-validation-for="Description" class="text-danger"></span>*@
+			<textarea asp-for="Description" style="margin-top:10px;" class="form-control"></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
 		</div>
 		<br />
 		<div class="form-group">
 			<label asp-for="Pages"></label>
-			<input asp-for="Pages" class="form-control"  min="0"/>
-			@*<span asp-validation-for="Pages" class="text-danger"></span>*@
+			<input asp-for="Pages" class="form-control" style="margin-top:10px;" min="0"/>
+			<span asp-validation-for="Pages" class="text-danger"></span>
 		</div>
 		<br />
-		<div class="form-group">
+		<div class="form-group" >
 			<label asp-for="Category"></label>
-			<input asp-for="Category" class="form-control" />
-			@*<span asp-validation-for="Category" class="text-danger"></span>*@
+			<input asp-for="Category" class="form-control" style="margin-top:10px;"/>
+			<span asp-validation-for="Category" class="text-danger"></span>
 		</div>
 		<br />
-
-		<div class="form-group">
-			<label asp-for="Language"></label>
-			<select asp-for="Language" class="form-control" asp-items="@ViewBag.Language">
-				<option value="" selected >Select a Language</option>
-			</select>
-		</div>
-
+		
 
 
 @*//This dropdown is for selecting values from enum in 'LanguageEnum' class*@
@@ -98,4 +112,18 @@
 	</form>
 </div>
 
-
+@section Scripts{
+	<script>
+		function myComplete(){
+			alert("Completed");
+		}
+		
+		function mySuccess(){
+			alert("Succeed");
+		}
+		
+		function myFailure(){
+			alert("Failed");
+		}
+	</script>
+}

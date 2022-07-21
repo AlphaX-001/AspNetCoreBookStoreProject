@@ -1,9 +1,13 @@
 ﻿body {
 }
-.demo{
-    height:100px;
-    width:200px;
-    margin-left:initial;
+.custom-email{
+    text-decoration:none;
+    color:green;
+}
+.demo {
+    height: 100px;
+    width: 200px;
+    margin-left: initial;
 }
 .tithead
 {

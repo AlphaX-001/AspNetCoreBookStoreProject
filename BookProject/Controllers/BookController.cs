@@ -12,16 +12,18 @@ namespace BookProject.Controllers
         private readonly BookRepo _bookRepo;
         private readonly IConfiguration Configuration;
         //AutoId autoId;
+        private IWebHostEnvironment _webhost;
         BookOperation bookOperation;
         LanguageOperation languageOperation;
         //------------------------------------------------------ //Constructar
 
-        public BookController(IConfiguration _configuration)        
+        public BookController(IConfiguration _configuration, IWebHostEnvironment webHostEnvironment)        
         {
             _bookRepo=new BookRepo();
             Configuration = _configuration;
             bookOperation = new BookOperation(Configuration);
             languageOperation = new LanguageOperation(Configuration);
+            _webhost = webHostEnvironment;
             //autoId = new AutoId(Configuration);
            
         }
@@ -61,6 +63,8 @@ namespace BookProject.Controllers
         }
         [HttpGet]
         public IActionResult AddNewBook(string? result, string? id)
+        
+        
         {
             ViewBag.id=id;
             ViewBag.result=result;
@@ -78,6 +82,12 @@ namespace BookProject.Controllers
         {
             if(ModelState.IsValid)
             {
+                //if (bookModel.CoverPhoto != null)
+                //{
+                //    string folder = "BookDetails/CoverPhotos";
+                //    string serverfolder = _webhost.WebRootPath;
+                //} 
+
                 string[] s1 = await bookOperation.AddBook(bookModel);
                 if (s1[0].Contains("Success"))
                 {

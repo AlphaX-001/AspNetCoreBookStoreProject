@@ -8,7 +8,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 #if DEBUG
-    builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+//Uncomment this below part to Disable Client side validations.
+
+//builder.Services.AddRazorPages().AddRazorRuntimeCompilation().AddViewOptions(option =>
+//{
+//    option.HtmlHelperOptions.ClientValidationEnabled = false;
+//});
 #endif
 
 var app = builder.Build();
@@ -36,6 +43,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
     
-    //pattern: "bookapp/{controller=Home}/{action=Index}/{id?}");                /can add aattribute like that on URL
+    //pattern: "bookapp/{controller=Home}/{action=Index}/{id?}");                /can add attribute like that on URL
 
 app.Run();

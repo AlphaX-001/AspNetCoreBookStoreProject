@@ -1,4 +1,5 @@
 ﻿using BookProject.Enums;
+using BookProject.Helpers;
 using System.ComponentModel.DataAnnotations;
 namespace BookProject.Models
 {
@@ -7,10 +8,12 @@ namespace BookProject.Models
         [Required]
         public int Id {  get; set; }
 
-        [Required(ErrorMessage ="You must have to provide the Title of your Book")]
+        [Required]
+        //[MyCustomValidation("Book")]
+        //[MyCustomValidation(errormessage="this is custom error")]
         public string Title { get; set; }
-
         [Required(ErrorMessage = "You must have to provide the Author name")]
+       
         public string Author { get; set; }
 
         [StringLength(500, ErrorMessage ="Description Should not be more than 500 letters")]
@@ -18,7 +21,6 @@ namespace BookProject.Models
 
         [Required(ErrorMessage = "You must have to provide the total Pages")]
         [Display(Name ="Total Pages of Book")]
-        
         public int? Pages { get; set; }
 
         public string? Category { get; set; }
@@ -33,7 +35,10 @@ namespace BookProject.Models
         public LanguageEnum _languageEnum { get; set; }
 
         public string? UpdatedOn { get; set; }
-        public string? CreatedOn { get; set; } 
-        
+        public string? CreatedOn { get; set; }
+
+        //[Display(Name = "Select the Cover photo of your Book")]
+        //public IFormFile CoverPhoto { get; set; }
+
     }
 } 
