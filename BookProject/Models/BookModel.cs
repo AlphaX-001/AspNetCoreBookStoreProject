@@ -8,12 +8,12 @@ namespace BookProject.Models
         [Required]
         public int Id {  get; set; }
 
-        [Required]
         //[MyCustomValidation("Book")]
         //[MyCustomValidation(errormessage="this is custom error")]
+        [Required]
         public string Title { get; set; }
-        [Required(ErrorMessage = "You must have to provide the Author name")]
-       
+
+        [Required(ErrorMessage = "You must have to provide the Author name")]      
         public string Author { get; set; }
 
         [StringLength(500, ErrorMessage ="Description Should not be more than 500 letters")]
@@ -37,8 +37,10 @@ namespace BookProject.Models
         public string? UpdatedOn { get; set; }
         public string? CreatedOn { get; set; }
 
-        //[Display(Name = "Select the Cover photo of your Book")]
-        //public IFormFile CoverPhoto { get; set; }
+        [Display(Name = "Select the Cover photo of your Book")]
+        [Required(ErrorMessage = "You must have to select a cover photo for your Book")]
+        public IFormFile CoverImg { get; set; }
 
+        public string coverimgurl { get; set; } = " ";
     }
 } 

@@ -7,17 +7,11 @@
     <div class="row">
         <h1 class="display-4 ">All Books</h1>
         <hr />
-        @{int i=0;}
         @foreach(var books in Model)
         {
-                i++;
-                @if(i>4)
-                {
-                    i = 1;
-                }
                 <div class="col-md-4">
                   <div class="card mb-4 shadow-sm">
-                      <img src="~/images/bk@(i).jpeg" height="400"alt="Image"/>     @*Displaying the image by just Randomly hard coded*@
+                      <img src="@books.coverimgurl" height="400" alt="Image-@books.Id">     @*Displaying the image by just Randomly hard coded*@
                       
                       <div class="card-body downnav">
                           <h4 class="card-text">@books.Title</h4>

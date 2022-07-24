@@ -82,11 +82,17 @@ namespace BookProject.Controllers
         {
             if(ModelState.IsValid)
             {
-                //if (bookModel.CoverPhoto != null)
-                //{
-                //    string folder = "BookDetails/CoverPhotos";
-                //    string serverfolder = _webhost.WebRootPath;
-                //} 
+                
+                if (bookModel.CoverImg != null)
+                {
+                    string folder = "BookDetails/CoverPhotos/";
+                    folder+= Guid.NewGuid().ToString()+"_"+bookModel.CoverImg.FileName;
+                    string serverfolder = Path.Combine(_webhost.WebRootPath, folder);
+                    bookModel.coverimgurl = "/" + folder;
+                    
+                    //in order to Copy the Image in Project..
+                    await bookModel.CoverImg.CopyToAsync(new FileStream(serverfolder, FileMode.Create)); 
+                }
 
                 string[] s1 = await bookOperation.AddBook(bookModel);
                 if (s1[0].Contains("Success"))

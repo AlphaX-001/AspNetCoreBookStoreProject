@@ -31,7 +31,7 @@ namespace BookProject.Controllers.Methods
             SqlConnection conn = new SqlConnection(connectionstring);
             conn.Open();
 
-            string sqlcmd = "insert into allbook (id,title,author,description,category,pages,language,CreatedOn,UpdatedOn)values"+"('" + bkid + "','" + bookModel.Title + "','" + bookModel.Author + "','" + bookModel.Description + "','" + bookModel.Category + "','" + bookModel.Pages + "','" + SelectedLanguage + "','"+bookModel.CreatedOn+"','"+bookModel.UpdatedOn+"')";
+            string sqlcmd = "insert into allbook (id,title,author,description,category,pages,language,CreatedOn,UpdatedOn,coverimgurl)values" + "('" + bkid + "','" + bookModel.Title + "','" + bookModel.Author + "','" + bookModel.Description + "','" + bookModel.Category + "','" + bookModel.Pages + "','" + SelectedLanguage + "','"+bookModel.CreatedOn+"','"+bookModel.UpdatedOn+"','"+bookModel.coverimgurl+ "')";
 
             SqlCommand cmd = new SqlCommand(sqlcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -65,7 +65,7 @@ namespace BookProject.Controllers.Methods
                                 Category=(book["category"]).ToString(), 
                                 Pages=Convert.ToInt32(book["pages"]),
                                 Language=book["language"].ToString(),   
-
+                                coverimgurl=book["coverimgurl"].ToString(),
                             }
                     );
                 
@@ -97,7 +97,7 @@ namespace BookProject.Controllers.Methods
                         model.Language = book["language"].ToString();
                         model.CreatedOn =(book["CreatedOn"]).ToString();
                         model.UpdatedOn =(book["UpdatedOn"]).ToString();
-
+                        model.coverimgurl = (book["coverimgurl"]).ToString();
                         return model;
             }
             else

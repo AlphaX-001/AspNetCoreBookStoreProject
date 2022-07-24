@@ -25,7 +25,7 @@
 	  </div>
 	</div>
 	@*  data-ajax-loading="#myLoader"*@
-	<form method="post" asp-action="AddNewBook" asp-controller="book"
+	<form method="post" asp-action="AddNewBook" asp-controller="book" enctype="multipart/form-data"
 		data-ajax="true" 
 		data-ajax-complete="myComplete"
 		data-ajax-success="mySuccess"
@@ -73,6 +73,13 @@
 			<span asp-validation-for="Category" class="text-danger"></span>
 		</div>
 		<br />
+		<div class="form-group">
+			<label asp-for="CoverImg"></label>
+			<div class="mb-3">
+				<input asp-for="CoverImg" class="form-control" id="formFile" style="margin-top:10px;">
+			</div>
+			<span asp-validation-for="CoverImg" class="text-danger"></span>
+		</div>
 		
 
 
