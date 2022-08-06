@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\BookDetails\CoverPhotos\" />
+    <Folder Include="wwwroot\BookDetails\GalleryPhotos\" />
+    <Folder Include="wwwroot\BookDetails\BookPdf\" />
   </ItemGroup>
 
 </Project>

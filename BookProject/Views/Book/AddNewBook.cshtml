@@ -2,6 +2,7 @@
 @model BookModel;
 @{
 	ViewData["Title"]="Add Books";
+	ViewData["adb-active"] = "active";
 }
 <div class="container">
 	<h2 class="display-4 gra">Add Book</h2>
@@ -81,6 +82,23 @@
 			<span asp-validation-for="CoverImg" class="text-danger"></span>
 		</div>
 		
+		<br />
+		<div class="form-group">
+			<label asp-for="GalleryImg"></label>
+			<div class="mb-3">
+				<input asp-for="GalleryImg" class="form-control" id="formFile" style="margin-top:10px;">
+			</div>
+			<span asp-validation-for="GalleryImg" class="text-danger"></span>
+		</div>
+
+		<br />
+		<div class="form-group">
+			<label asp-for="BookPdf"></label>
+			<div class="mb-3">
+				<input asp-for="BookPdf" class="form-control" id="formFile" style="margin-top:10px;">
+			</div>
+			<span asp-validation-for="BookPdf" class="text-danger"></span>
+		</div>
 
 
 @*//This dropdown is for selecting values from enum in 'LanguageEnum' class*@
@@ -134,3 +152,12 @@
 		}
 	</script>
 }
+ @section Breadcrumb
+  {
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../#">Home</a></li>
+                <li class="breadcrumb-item"><a href="../Book/AddNewBook">Add Book</a></li>
+            </ol>
+        </nav>
+  }   

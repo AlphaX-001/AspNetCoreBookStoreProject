@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<BookProject.Models.BookModel>
 @{
     ViewData["Title"] = "All Books";
+    ViewData["allb-active"] = "active";
 }
 <div class="py-5 bg-light">
 <div class="container">
@@ -10,33 +11,18 @@
         @foreach(var books in Model)
         {
                 <div class="col-md-4">
-                  <div class="card mb-4 shadow-sm">
-                      <img src="@books.coverimgurl" height="400" alt="Image-@books.Id">     @*Displaying the image by just Randomly hard coded*@
-                      
-                      <div class="card-body downnav">
-                          <h4 class="card-text">@books.Title</h4>
-                          <p class="card-texr">@books.Description</p>
-                          <div class="d-flex justify-content-between align-items-center">                            
-                              <div class="btn-group">
-                                  <a asp-route="bookDetails" asp-route-id="@books.Id" class="btn btn-sm btn-outline-secondary">View details</a>
-                              </div>
-                              <small class="text-muted">Author: @books.Author</small>
-                        
-                          </div>
-                      </div>
-                  </div>
-           </div>
+                    <partial name="_BookCard" model="@books"/>
+                </div>
         }
     </div>
 </div>
 </div>
-    @*asp-fragment="simmilarbooks"*@ 
-  @*@section Breadcrumb
+ @section Breadcrumb
   {
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="~/home/">Home</a></li>
-                <li class="breadcrumb-item"><a href="book/allarticles">Articles</a></li>
+                <li class="breadcrumb-item"><a href="../#">Home</a></li>
+                <li class="breadcrumb-item"><a href="../Book/AllBooks">All Books</a></li>              
             </ol>
         </nav>
-  }*@
+  }   

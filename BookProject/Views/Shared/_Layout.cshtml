@@ -2,7 +2,8 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] | SoftoGen Solutions</title>
 
 @*    <environment include="Development">
@@ -11,148 +12,30 @@
     <environment exclude="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     </environment>*@
+
     <link rel="icon" href="./images/up.png" type="image/x-icon">
     <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" 
-         rel="stylesheet"
-         integrity="" 
-         crossorigin="anonymous">
-
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-    
-<header>
-<!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark gradient-custom"  id="topofpage">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-    <!-- Navbar brand -->
-     <a class="navbar-brand" href="/">
-           <img src="~/images/logo1.png" height="90" alt="Logo" asp-append-version="true">
-     </a>
 
-    @*<a class="navbar-brand" href="#">Navbar</a>*@
+    <partial name="_header"/>    @*Partial View of Header*@
 
-    <!-- Toggle button -->
-    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      @*<i class="fas fa-bars text-light"></i>gfg*@
-      <i class="bi bi-border-width"></i>
-    </button>
+    @RenderSection("Breadcrumb",required:false)         @*Breadcrumb is is only About page*@
 
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Left links -->
-      <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
-
-        <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
-          <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
-        </li>
-
-         <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
-          <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="About">About</a>
-        </li>
-       
-         <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
-          <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="AddNewBook">Add Book</a>
-        </li>
-
-        <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
-          <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="AllBooks">View Books</a>
-        </li>
-
-
-@*        <li class="nav-item text-center mx-2 mx-lg-1">
-          <a class="nav-link" href="/book/allbooks">
-            <div>
-              <i class="far fa-envelope fa-lg mb-1"></i>
-              <span class="badge rounded-pill badge-notification bg-dark">11</span>
-            </div>
-            All Books
-          </a>
-        </li>
-        <li class="nav-item text-center mx-2 mx-lg-1">
-          <a class="nav-link disabled" aria-disabled="true" href="#!">
-            <div>
-              <i class="far fa-envelope fa-lg mb-1"></i>
-              <span class="badge rounded-pill badge-notification bg-dark">11</span>
-            </div>
-            Disabled
-          </a>
-        </li>
-        <li class="nav-item dropdown text-center mx-2 mx-lg-1">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-mdb-toggle="dropdown"
-            aria-expanded="false">
-            <div>
-              <i class="far fa-envelope fa-lg mb-1"></i>
-              <span class="badge rounded-pill badge-notification bg-dark">11</span>
-            </div>
-            Dropdown
-          </a>
-          <!-- Dropdown menu -->
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </li>
-          </ul>
-        </li>*@
-      </ul>
-      <!-- Left links -->
-
-      <!-- Right links -->
-
-      <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
-        <li class="nav-item text-center mx-2 mx-lg-1 fw-bold ">
-          <a class="btn btn-outline-light text-center" href="user/login">
-            @*<div>
-              <i class="fas fa-bell fa-lg mb-1"></i>
-              <span class="badge rounded-pill badge-notification bg-dark">O</span>
-            </div>*@
-           Login
-          </a>
-        </li>
-        <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
-          <a class="btn btn-outline-light text-center" href="/user/signup">
-            Sign up
-          </a>
-        </li>
-      </ul>
-      
-      <!-- Right links -->
-
-      <!-- Search form -->
-@*      <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0">
-        <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-white" type="button" data-mdb-ripple-color="dark">
-          Search
-        </button>
-      </form>*@
-    </div>
-    <!-- Collapsible wrapper -->
-  </div>
-  <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->   
-</header> 
-      @RenderSection("Breadcrumb",required:false)
     <main role="main" >
         @RenderBody()
     </main>
 
-<footer class="border-top gradient-custom footer">   
-    <p style="text-align:center">
-        &nbsp; &copy;SoftoGen Solutions - @DateTime.Now.Year
-    </p>
-    
-</footer>
+    <partial name="_footer"/>            @*Partial View of Footer*@
+
 </body>
+
+
 @*<environment include="Development">
 <script src="~/lib/jquery/jquery.js"></script>
 </environment>
@@ -165,12 +48,9 @@
 <script src="~/lib/jquery/jquery.min.js"></script>
 <script src="~/jquery-validate/jquery.validate.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js">
+<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-</script>
 
 @RenderSection("Scripts",required:false)
 

@@ -1,0 +1,49 @@
+﻿     <header>
+        <nav class = "navbar navbar-default gradient-custom" id="topofpage" role = "navigation">
+             <div class = "navbar-header">
+                <button type = "button" class = "navbar-toggle" 
+                   data-toggle = "collapse" data-target = "#example-navbar-collapse">
+                   <span class = "sr-only">Toggle navigation</span>
+                   <span class = "icon-bar"></span>
+                   <span class = "icon-bar"></span>
+                   <span class = "icon-bar"></span>
+                </button>
+               <a class="navbar-brand" href="/" style="padding: 5px;margin-right: 20px;">
+                    <img src="/images/logo1.png?v=5CMye3hIUHb_GG0Tv50yXhmnRidAMmzegNFLjepBKn0" alt="BookStore Application" style="margin-right: px;" height="90">
+               </a>
+             </div>
+         
+             <div class = "collapse navbar-collapse" id = "example-navbar-collapse">
+                <ul class = "nav navbar-nav" style="float:left;">
+                    <li class="nav-guys @ViewData["home-active"]">
+                      <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                     <li class="nav-guys @ViewData["abo-active"]">
+                      <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="About">About</a>
+                    </li>
+       
+                     <li class="nav-guys @ViewData["adb-active"]">
+                      <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="AddNewBook">Add Book</a>
+                    </li>
+
+                    <li class="nav-guys @ViewData["allb-active"]">
+                      <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="AllBooks">View Books</a>
+                    </li>
+                </ul>
+                <ul class = "nav navbar-nav" style="float:right;">
+                    <li class="nav-item text-center mx-2 mx-lg-1 fw-bold ">
+                      <a class="box-button" style="padding: 10px;margin: 5px;" href="user/login"> 
+                       Login
+                      </a>
+	                </li>
+        
+	                <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
+                      <a class="box-button" style="padding: 10px;margin: 5px;" href="/user/signup">
+                        Sign up
+                      </a>
+                    </li>
+               </ul>
+             </div>
+          </nav>
+    </header> 

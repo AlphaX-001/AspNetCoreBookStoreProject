@@ -7,6 +7,11 @@ using Microsoft.Data.SqlClient;
 
 namespace BookProject.Controllers
 {
+    public class RandomViewModel
+    {
+        public BookModel bookmodelreturn { get; set; }
+        public List<GalleryImgModel> gallerymodelreturn { get; set; }
+    }
     public class BookController : Controller
     {
         private readonly BookRepo _bookRepo;
@@ -25,7 +30,7 @@ namespace BookProject.Controllers
             languageOperation = new LanguageOperation(Configuration);
             _webhost = webHostEnvironment;
             //autoId = new AutoId(Configuration);
-           
+
         }
 
         //------------------------------------------------------ //here i called the API
@@ -43,8 +48,13 @@ namespace BookProject.Controllers
         {
             BookModel books = await bookOperation.GetBook(id);
             if(books.Title != null)
-            { 
-                return View(books);
+            {
+                var randomViewModel = new RandomViewModel() //Done this to pass two models in a view
+                {
+                    bookmodelreturn = books,
+                    gallerymodelreturn = await bookOperation.AllGalleryImg(id),
+                };
+                return View(randomViewModel);
             }
             else
             {
@@ -86,16 +96,34 @@ namespace BookProject.Controllers
                 if (bookModel.CoverImg != null)
                 {
                     string folder = "BookDetails/CoverPhotos/";
-                    folder+= Guid.NewGuid().ToString()+"_"+bookModel.CoverImg.FileName;
-                    string serverfolder = Path.Combine(_webhost.WebRootPath, folder);
-                    bookModel.coverimgurl = "/" + folder;
-                    
-                    //in order to Copy the Image in Project..
-                    await bookModel.CoverImg.CopyToAsync(new FileStream(serverfolder, FileMode.Create)); 
+                    bookModel.coverimgurl = await SaveImg(bookModel.CoverImg, folder);
                 }
 
+                if (bookModel.BookPdf != null)
+                {
+                    string folder = "BookDetails/BookPdf/";
+                    bookModel.bookpdfurl = await SaveImg(bookModel.BookPdf, folder);
+                }
+                ///////////////////////////////////////////////////////////// Saving All Data in Database
+
                 string[] s1 = await bookOperation.AddBook(bookModel);
-                if (s1[0].Contains("Success"))
+                string res = "";
+                if (bookModel.GalleryImg != null)
+                {
+                    List<GalleryImgModel> galleryList = new List<GalleryImgModel>();
+                    string folder = "BookDetails/GalleryPhotos/";
+                    foreach (var item in bookModel.GalleryImg)
+                    {
+                        galleryList.Add(new GalleryImgModel()
+                        {
+
+                            bookid =Convert.ToInt32(s1[1]),
+                            galleryimgurlurl = await SaveImg(item, folder),
+                        });
+                    }
+                   res= await bookOperation.AddGalleryImg(galleryList);
+                }
+                if (s1[0].Contains("Success") && res.Contains("Success"))
                 {
                     return RedirectToAction("AddNewBook", new { result = s1[0], id = s1[1] });
                 }
@@ -106,6 +134,17 @@ namespace BookProject.Controllers
             return View();
 
         }
+
+        private async Task<string> SaveImg(IFormFile file,string folder)
+        {
+            
+            folder += Guid.NewGuid().ToString() + "_" + file.FileName;
+            string serverfolder = Path.Combine(_webhost.WebRootPath, folder);
+            //in order to Copy the Image in Project..
+            await file.CopyToAsync(new FileStream(serverfolder, FileMode.Create));
+            return "/" + folder;
+        }
+        
 
         ////This Private Method will Return All the Languages along with their ID's
         //private List<SelectListItem> GetLanguage()

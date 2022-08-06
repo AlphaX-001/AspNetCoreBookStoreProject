@@ -9,8 +9,8 @@ namespace BookProject.Helpers
         {
 
             output.TagName = "a";
-            //output.Attributes.SetAttribute("href", $"mailto:{myEmail}");
-            output.Attributes.SetAttribute("href", "mailto:" +Email+"");
+            output.Attributes.SetAttribute("href", $"mailto:{Email}");
+            //output.Attributes.SetAttribute("href", "mailto:" + Email + "");
             output.Attributes.Add("class", "custom-email");
             //output.Content.SetContent("Click Here to Connect");
         }

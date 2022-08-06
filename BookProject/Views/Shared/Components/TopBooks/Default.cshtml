@@ -1,0 +1,14 @@
+﻿@model List<BookModel>
+
+
+	<div class="row">
+    @foreach(var books in Model)
+    {
+        
+        <div class="col-md-3" >
+            <partial name="_BookCard" model="books"/>
+        </div>
+    }
+    
+
+    </div>
