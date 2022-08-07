@@ -144,7 +144,7 @@ namespace BookProject.Controllers.Methods
         }
 
 
-        public async Task<IEnumerable<BookModel>> GetTopBooks(string bookCategory)    //Api for viewing All Books
+        public async Task<IEnumerable<BookModel>> GetSimilarBooks(string bookCategory)    //Api for viewing All Books
         {
             List<BookModel> model = new List<BookModel>();
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");

@@ -5,21 +5,19 @@ using System.Diagnostics;
 
 namespace BookProject.Controllers
 {
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
         [ViewData]
         public string Title { get; set; }
-
-        //private readonly BookRepo bookRepo;
-
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
             //bookRepo = new BookRepo();
         }
-
+        [Route("~/")]
         public IActionResult Index()
         {
             //var res = bookRepo.GetAllBooks();
@@ -28,6 +26,7 @@ namespace BookProject.Controllers
             Title = "Home";  //Passing Title from Controller to Layout using ViewBag Attribute
             return View();
         }
+        
         public IActionResult About()
         {
             return View(); 

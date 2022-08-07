@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookProject.Components
 {
-    public class TopBooksViewComponent : ViewComponent
+    public class SimilarBooksViewComponent : ViewComponent
     {
         BookOperation bookOperation;
-        public TopBooksViewComponent(IConfiguration configuration)
+        public SimilarBooksViewComponent(IConfiguration configuration)
         {
             bookOperation=new BookOperation(configuration);
         }
         public async Task<IViewComponentResult> InvokeAsync(string bookCategory)
         {
-            var books =await bookOperation.GetTopBooks(bookCategory);
+            var books =await bookOperation.GetSimilarBooks(bookCategory);
             return View(books);
         }
     }

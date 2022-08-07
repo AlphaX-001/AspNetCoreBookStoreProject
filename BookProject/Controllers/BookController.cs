@@ -12,6 +12,7 @@ namespace BookProject.Controllers
         public BookModel bookmodelreturn { get; set; }
         public List<GalleryImgModel> gallerymodelreturn { get; set; }
     }
+    [Route("[controller]/[action]")]
     public class BookController : Controller
     {
         private readonly BookRepo _bookRepo;
@@ -34,7 +35,7 @@ namespace BookProject.Controllers
         }
 
         //------------------------------------------------------ //here i called the API
-
+        //[Route("~/all-books")]
         public async Task<IActionResult> AllBooks()
         {
               
@@ -43,7 +44,7 @@ namespace BookProject.Controllers
 
         }
 
-        [Route("Book-Details/{id}", Name = "bookDetails")]
+        [Route("~/Book-Details/{id}", Name = "bookDetails")]
         public async Task<IActionResult> GetBooks(int id)
         {
             BookModel books = await bookOperation.GetBook(id);
@@ -71,6 +72,7 @@ namespace BookProject.Controllers
             return View(books);
             
         }
+        //[Route("~/add-books")]
         [HttpGet]
         public IActionResult AddNewBook(string? result, string? id)
         
@@ -86,7 +88,7 @@ namespace BookProject.Controllers
         }
 
         //------------------------------------------------------
-
+        //[Route("~/add-books")]
         [HttpPost]
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {

@@ -97,7 +97,10 @@
     <hr />
     <div class="py-5 bg-light" id="simmilarbooks">
         <h3 class="h3">Simmilar Books</h3>
-        @await Component.InvokeAsync("TopBooks",new{bookCategory=@Model.bookmodelreturn.Category})
+
+        @await Component.InvokeAsync("SimilarBooks",new{bookCategory=@Model.bookmodelreturn.Category})
+
+        @*<vc:similar-books bookCategory="@Model.bookmodelreturn.Category"></vc:similar-books>*@
     </div>
 </div>
 

@@ -39,10 +39,18 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-    
-    //pattern: "bookapp/{controller=Home}/{action=Index}/{id?}");                /can add attribute like that on URL
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllers();
+
+//app.MapControllerRoute(
+//    name: "AboutUs",
+//    pattern: "about-us",
+//    defaults: new {controller="home", action= "About" } );
+
+
+//pattern: "bookapp/{controller=Home}/{action=Index}/{id?}");                /can add attribute like that on URL
 
 app.Run();
