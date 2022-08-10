@@ -6,14 +6,14 @@ namespace BookProject.Components
 {
     public class SimilarBooksViewComponent : ViewComponent
     {
-        BookOperation bookOperation;
-        public SimilarBooksViewComponent(IConfiguration configuration)
+        IBookOperation _bookOperation;
+        public SimilarBooksViewComponent(IConfiguration configuration, IBookOperation bookOperation)
         {
-            bookOperation=new BookOperation(configuration);
+            _bookOperation=bookOperation;
         }
         public async Task<IViewComponentResult> InvokeAsync(string bookCategory)
         {
-            var books =await bookOperation.GetSimilarBooks(bookCategory);
+            var books =await _bookOperation.GetSimilarBooks(bookCategory);
             return View(books);
         }
     }

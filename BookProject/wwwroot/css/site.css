@@ -3,6 +3,10 @@
     padding: 0px;
     border: 0px;
 }
+body {
+    max-width: 100%;
+    background: #f7ecde;
+}
 
 .custom-email {
     text-decoration: none;
@@ -25,6 +29,7 @@
     line-height: 30px;
     position: inherit;
     bottom: 0;
+    align-content:center;
 }
 
 html {
@@ -33,9 +38,7 @@ html {
     overflow-x: hidden;
 }
 
-body {
-    max-width: 100%;
-}
+
 
 .btn {
     padding: .45rem 1.5rem .35rem;
@@ -58,7 +61,7 @@ body {
 }
 
 .downnav {
-    background: #c5cfd1;
+    background: #9ed2c6;
     padding: 20px;
 }
 
@@ -185,6 +188,7 @@ img {
 
 .nav li a .box-button:hover {
     background-color: #fbfbfb;
+
 }
 
 @keyframes fade {

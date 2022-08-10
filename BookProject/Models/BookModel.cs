@@ -21,7 +21,7 @@ namespace BookProject.Models
 
         [Required(ErrorMessage = "You must have to provide the total Pages")]
         [Display(Name ="Total Pages of Book")]
-        public int? Pages { get; set; }
+        public int Pages { get; set; }
 
         [Required(ErrorMessage = "Category is a Required Field")]
         public string? Category { get; set; }
@@ -32,8 +32,9 @@ namespace BookProject.Models
 
         //[Required(ErrorMessage = "You must have to select the Languages for your Book")]
         //public List<string> MultiLanguage { get; set; }
-        [Display(Name = "Enum: Your Mother Tongue")]
-        public LanguageEnum _languageEnum { get; set; }
+
+        //[Display(Name = "Enum: Your Mother Tongue")]
+        //public LanguageEnum _languageEnum { get; set; }
 
         public string? UpdatedOn { get; set; }
         public string? CreatedOn { get; set; }
@@ -44,6 +45,8 @@ namespace BookProject.Models
 
         public string coverimgurl { get; set; } = "/images/book.png";
 
+
+        [Display(Name = "Select some other photos of your Book")]
         public IFormFileCollection GalleryImg { get; set; }
 
         [Display(Name = "upload the Book in Pdf format")]

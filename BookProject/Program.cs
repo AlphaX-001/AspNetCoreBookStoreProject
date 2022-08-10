@@ -1,11 +1,18 @@
 
 
+using BookProject.Controllers.Methods;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//The below services are to use Dependency injection
+builder.Services.AddScoped<IAutoId, AutoId>();
+builder.Services.AddScoped<ILanguageOperation, LanguageOperation>();
+builder.Services.AddScoped<IBookOperation, BookOperation>();
+
 
 #if DEBUG
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();

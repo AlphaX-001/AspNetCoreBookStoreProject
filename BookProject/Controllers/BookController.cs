@@ -15,22 +15,22 @@ namespace BookProject.Controllers
     [Route("[controller]/[action]")]
     public class BookController : Controller
     {
-        private readonly BookRepo _bookRepo;
         private readonly IConfiguration Configuration;
-        //AutoId autoId;
         private IWebHostEnvironment _webhost;
-        BookOperation bookOperation;
-        LanguageOperation languageOperation;
-        //------------------------------------------------------ //Constructar
 
-        public BookController(IConfiguration _configuration, IWebHostEnvironment webHostEnvironment)        
+        IBookOperation _bookOperation;
+        ILanguageOperation _languageOperation;
+       
+        public BookController(IConfiguration _configuration,
+            IWebHostEnvironment webHostEnvironment,
+            IBookOperation bookOperation,
+            ILanguageOperation languageOperation)        
         {
-            _bookRepo=new BookRepo();
             Configuration = _configuration;
-            bookOperation = new BookOperation(Configuration);
-            languageOperation = new LanguageOperation(Configuration);
+            _bookOperation = bookOperation;
+            _languageOperation = languageOperation;
             _webhost = webHostEnvironment;
-            //autoId = new AutoId(Configuration);
+            
 
         }
 
@@ -39,7 +39,7 @@ namespace BookProject.Controllers
         public async Task<IActionResult> AllBooks()
         {
               
-              var books = await bookOperation.AllBooks(); 
+              var books = await _bookOperation.AllBooks(); 
               return View(books);
 
         }
@@ -47,13 +47,13 @@ namespace BookProject.Controllers
         [Route("~/Book-Details/{id}", Name = "bookDetails")]
         public async Task<IActionResult> GetBooks(int id)
         {
-            BookModel books = await bookOperation.GetBook(id);
+            BookModel books = await _bookOperation.GetBook(id);
             if(books.Title != null)
             {
                 var randomViewModel = new RandomViewModel() //Done this to pass two models in a view
                 {
                     bookmodelreturn = books,
-                    gallerymodelreturn = await bookOperation.AllGalleryImg(id),
+                    gallerymodelreturn = await _bookOperation.AllGalleryImg(id),
                 };
                 return View(randomViewModel);
             }
@@ -65,13 +65,13 @@ namespace BookProject.Controllers
 
         //------------------------------------------------------
 
-        public IActionResult SearchBooks(string bookName,string authorName)
-        {
+        //public IActionResult SearchBooks(string bookName,string authorName)
+        //{
             
-            var books = _bookRepo.SearchBooks(bookName,authorName);
-            return View(books);
+        //    var books = _bookRepo.SearchBooks(bookName,authorName);
+        //    return View(books);
             
-        }
+        //}
         //[Route("~/add-books")]
         [HttpGet]
         public IActionResult AddNewBook(string? result, string? id)
@@ -83,7 +83,7 @@ namespace BookProject.Controllers
 
 
             //ViewBag.Language = new SelectList(GetLanguage(),"Id","Text");
-            ViewBag.Language = languageOperation.AllLang();
+            ViewBag.Language = _languageOperation.AllLang();
             return View();
         }
 
@@ -108,7 +108,7 @@ namespace BookProject.Controllers
                 }
                 ///////////////////////////////////////////////////////////// Saving All Data in Database
 
-                string[] s1 = await bookOperation.AddBook(bookModel);
+                string[] s1 = await _bookOperation.AddBook(bookModel);
                 string res = "";
                 if (bookModel.GalleryImg != null)
                 {
@@ -123,14 +123,14 @@ namespace BookProject.Controllers
                             galleryimgurlurl = await SaveImg(item, folder),
                         });
                     }
-                   res= await bookOperation.AddGalleryImg(galleryList);
+                   res= await _bookOperation.AddGalleryImg(galleryList);
                 }
                 if (s1[0].Contains("Success") && res.Contains("Success"))
                 {
                     return RedirectToAction("AddNewBook", new { result = s1[0], id = s1[1] });
                 }
             }
-            ViewBag.Language = languageOperation.AllLang();
+            ViewBag.Language = _languageOperation.AllLang();
             ViewBag.id = 0;
             ViewBag.result = "Failed";
             return View();

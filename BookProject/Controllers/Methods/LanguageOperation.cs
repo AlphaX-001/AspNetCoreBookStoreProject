@@ -10,15 +10,15 @@ namespace BookProject.Controllers.Methods
 {
     [Route("api/[controller]/[action]/{id?}")]
     [ApiController]
-    public class LanguageOperation : ControllerBase
+    public class LanguageOperation : ControllerBase, ILanguageOperation
     {
         IConfiguration Configuration;
         public LanguageOperation(IConfiguration _configuration)
-        {   
-            Configuration = _configuration;    
+        {
+            Configuration = _configuration;
         }
 
-        public List<SelectListItem>AllLang()
+        public List<SelectListItem> AllLang()
         {
             //List<LanguageModel> model = new List<LanguageModel>();
             List<SelectListItem> lang = new List<SelectListItem>();
@@ -30,7 +30,7 @@ namespace BookProject.Controllers.Methods
             SqlDataReader reader = cmd.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(reader);
-            foreach(DataRow row in dataTable.Rows)
+            foreach (DataRow row in dataTable.Rows)
             {
                 //model.Add(
                 //        new LanguageModel()
@@ -43,10 +43,10 @@ namespace BookProject.Controllers.Methods
                 lang.Add(
                             new SelectListItem()
                             {
-                                Text= (row["langname"]).ToString(),
-                                Value=(row["langid"]).ToString(),
-                        
-                            }  
+                                Text = (row["langname"]).ToString(),
+                                Value = (row["langid"]).ToString(),
+
+                            }
                         );
             }
             return lang;
@@ -57,11 +57,11 @@ namespace BookProject.Controllers.Methods
             string sqlcmd = "select langname from language where langid='" + id + "'";
             SqlConnection sqlConnection = new SqlConnection(connectionstring);
             sqlConnection.Open();
-            SqlCommand command = new SqlCommand(sqlcmd,sqlConnection);
+            SqlCommand command = new SqlCommand(sqlcmd, sqlConnection);
             SqlDataReader reader = command.ExecuteReader();
-            DataTable dt=new DataTable();
+            DataTable dt = new DataTable();
             dt.Load(reader);
-            if(dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
                 return dt.Rows[0]["langname"].ToString();
             }
