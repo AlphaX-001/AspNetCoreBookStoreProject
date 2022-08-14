@@ -1,6 +1,7 @@
 
-
 using BookProject.Controllers.Methods;
+using BookProject.Models;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,11 @@ builder.Services.AddScoped<IAutoId, AutoId>();
 builder.Services.AddScoped<ILanguageOperation, LanguageOperation>();
 builder.Services.AddScoped<IBookOperation, BookOperation>();
 
+//In the following code, TestAlertConfig is added to the service container
+//with Configure and bound to configuration(to use IOptions for fetching data from appsettings.json file):
+
+builder.Services.Configure<TestAlertConfig>("MicrosoftBook", builder.Configuration.GetSection("Test"));
+builder.Services.Configure<TestAlertConfig>("GoogleBook", builder.Configuration.GetSection("Test2"));
 
 #if DEBUG
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();

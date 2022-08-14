@@ -150,6 +150,7 @@ namespace BookProject.Controllers.Methods
             string connectionstring = Configuration.GetConnectionString("DefaultConnection");
             SqlConnection connection = new SqlConnection(connectionstring);
             connection.Open();
+
             string cmd = "select * from allbook where category='" + bookCategory + "'";
             SqlCommand sqlCommand = new SqlCommand(cmd, connection);
             SqlDataReader sdr = await sqlCommand.ExecuteReaderAsync();

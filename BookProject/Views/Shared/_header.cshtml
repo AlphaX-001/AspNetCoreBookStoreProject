@@ -1,4 +1,18 @@
-﻿     <header>
+﻿@using Microsoft.Extensions.Configuration
+@using Microsoft.Extensions.Options
+@*@inject IConfiguration _configuration
+@inject IOptionsSnapshot<TestAlertConfig> _alertConfig*@
+@{
+    //var alerts = _configuration.GetSection("Test");
+
+    //var alerts = new TestAlertConfig();
+    //_configuration.Bind("Test", alerts);
+
+    //var alerts1 = _alertConfig.Get("MicrosoftBook");
+    //var alerts2 = _alertConfig.Get("GoogleBook");
+
+}
+    <header>
         <nav class = "navbar navbar-default" style="background:#54bab9;color:black;" id="topofpage" role = "navigation">
              <div class = "navbar-header">
                 <button type = "button" class = "navbar-toggle" 
@@ -8,8 +22,9 @@
                    <span class = "icon-bar"></span>
                    <span class = "icon-bar"></span>
                 </button>
-               <a class="navbar-brand" href="/" style="padding: 5px;margin-right: 20px;">
-                    <img src="/images/logo1.png?v=5CMye3hIUHb_GG0Tv50yXhmnRidAMmzegNFLjepBKn0" alt="BookStore Application" style="margin-right: px;" height="90">
+               <a class="navbar-brand" href="/" style="padding: 1px; margin-right:20px; margin-left: 20px;">
+                    @*<img class="nav-logo" src="~/images/logo.png" alt="BookStore Application">*@
+                   <p style="padding: 14px;">Web Library</p>
                </a>
              </div>
          
@@ -46,4 +61,31 @@
                </ul>
              </div>
           </nav>
-    </header> 
+    </header>
+
+
+<!-- This Section is to giva a alert from the "appsettings.json" file using Bind Method-->
+@*@if (alerts1.TestBool)
+{   
+    <div class="alert alert-info" role="alert">
+        @alerts1.TestValue
+    </div>
+}
+@if (alerts2.TestBool)
+{   
+    <div class="alert alert-info" role="alert">
+        @alerts2.TestValue
+    </div>
+}*@
+
+
+
+
+
+    @*<!-- This Section is to giva a alert from the "appsettings.json" file using GetSection & GetValue() Method-->
+@if (alerts.GetValue<bool>("TestBool"))
+{
+    <div class="alert alert-info" role="alert">
+        @(alerts.GetValue<string>("TestValue"))
+    </div>
+}*@

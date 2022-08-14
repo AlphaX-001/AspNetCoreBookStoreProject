@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] | SoftoGen Solutions</title>
 
-@*    <environment include="Development">
+@*  <environment include="Development">
         <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
@@ -25,7 +25,7 @@
 
     <partial name="_header"/>    @*Partial View of Header*@
 
-    @RenderSection("Breadcrumb",required:false)         @*Breadcrumb is is only About page*@
+    @RenderSection("Breadcrumb",required:false)   
 
     <main role="main" >
         @RenderBody()

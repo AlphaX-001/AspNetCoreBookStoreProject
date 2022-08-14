@@ -1,8 +1,12 @@
 ﻿@using BookProject.Enums;
-@model BookModel;
+@using BookProject.Controllers.Methods;
+@model BookModel
+@inject ILanguageOperation _languages
+
+
 @{
 	ViewData["Title"]="Add Books";
-	ViewData["adb-active"] = "active";
+	ViewData["adb-active"] = "nav-guys-active";
 }
 <div class="container">
 	<h2 class="display-4 gra">Add Book</h2>
@@ -50,7 +54,7 @@
 		<br />
 		<div class="form-group">
 			<label asp-for="Language"></label>
-			<select asp-for="Language" style="margin-top:10px;" class="form-control" asp-items="@ViewBag.Language">
+			<select asp-for="Language" style="margin-top:10px;" class="form-control" asp-items="@_languages.AllLang()">
 				<option value="" selected >Select a Language</option>
 			</select>
 			<span asp-validation-for="Language" class="text-danger"></span>

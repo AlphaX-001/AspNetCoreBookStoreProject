@@ -19,7 +19,7 @@ namespace BookProject.Controllers
         private IWebHostEnvironment _webhost;
 
         IBookOperation _bookOperation;
-        ILanguageOperation _languageOperation;
+        //ILanguageOperation _languageOperation;
        
         public BookController(IConfiguration _configuration,
             IWebHostEnvironment webHostEnvironment,
@@ -28,7 +28,7 @@ namespace BookProject.Controllers
         {
             Configuration = _configuration;
             _bookOperation = bookOperation;
-            _languageOperation = languageOperation;
+            //_languageOperation = languageOperation;
             _webhost = webHostEnvironment;
             
 
@@ -74,16 +74,12 @@ namespace BookProject.Controllers
         //}
         //[Route("~/add-books")]
         [HttpGet]
-        public IActionResult AddNewBook(string? result, string? id)
-        
-        
+        public IActionResult AddNewBook(string? result, string? id)        
         {
             ViewBag.id=id;
             ViewBag.result=result;
-
-
             //ViewBag.Language = new SelectList(GetLanguage(),"Id","Text");
-            ViewBag.Language = _languageOperation.AllLang();
+            //ViewBag.Language = _languageOperation.AllLang();
             return View();
         }
 
@@ -130,7 +126,7 @@ namespace BookProject.Controllers
                     return RedirectToAction("AddNewBook", new { result = s1[0], id = s1[1] });
                 }
             }
-            ViewBag.Language = _languageOperation.AllLang();
+            //ViewBag.Language = _languageOperation.AllLang();
             ViewBag.id = 0;
             ViewBag.result = "Failed";
             return View();
