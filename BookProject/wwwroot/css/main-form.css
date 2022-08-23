@@ -1,0 +1,158 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+
+
+.top-menu {
+    background-color: #06a83e;
+    width: 100%;
+    min-height: 80px;
+    position: absolute;
+}
+
+    .top-menu .left {
+        width: 20%;
+        position: absolute;
+    }
+
+        .top-menu .left img {
+            margin-left: 10%
+        }
+
+    .top-menu .right {
+        left: 20%;
+        width: 80%;
+        position: absolute;
+    }
+
+
+    .top-menu ul {
+        margin: 0px;
+        float: right;
+        margin-right: 10%
+    }
+
+    .top-menu li {
+        display: inline-block;
+        text-transform: uppercase;
+        color: #FFF;
+        font-size: 14px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 20px;
+        border-bottom: 10px solid transparent;
+        transition: 1s all;
+    }
+
+        .top-menu li a {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #fff
+        }
+
+        .top-menu li:hover {
+            *background-color: #f96000;
+            color: #fff;
+            cursor: pointer;
+            border-top-right-radius: 10px;
+            border-bottom: 10px solid #fff;
+            transition: 1s all;
+        }
+
+.main-content {
+    width: 100%;
+    margin: 20px;
+    padding: 10px;
+}
+
+    .main-content p {
+        text-align: justify
+    }
+
+
+.w-50 {
+    width: 49.2%;
+    position: relative;
+    display: inline-block
+}
+
+    .w-50 img {
+        width: 100%;
+    }
+
+/*.container input{
+
+    display: block;
+    margin: 10px;
+    padding: 10px;
+    font-family: verdana;
+    font-size: 13px;
+    border-width: 0px;
+    border-bottom: 2px solid #f96000;
+    background-color: #ffffff;
+}*/
+
+.btn-custom {
+    width: 100%;
+    diplay: block;
+    background: #60bda7;
+    color: #fff;
+    border-width: 0px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+    .btn-custom:hover {
+        background: #252525;
+        cursor: pointer;
+    }
+
+.btn-dngr {
+  
+    width: 100%;
+    diplay: block;
+    background: #d9534f;
+    color: #fff;
+    border-width: 0px;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration:none;
+}
+
+    .btn-dngr:hover {
+        background: #252525;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+    }
+
+span {
+    display: inline-block;
+    width: 500px;
+    text-align: left
+}
+
+    span input {
+        display: inline-block;
+        width: auto
+    }
+
+label {
+    display: block;
+    color: #343434;
+    text-align: left;
+    width: 500px;
+}
+.row{
+    max-width:100%;
+    padding
+   
+}
+.container-50w{
+    margin:auto;
+    max-width:30%;
+}

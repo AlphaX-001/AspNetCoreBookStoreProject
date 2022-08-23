@@ -1,0 +1,109 @@
+﻿@model BookProject.Models.NewUserModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>signup</title>
+    <link href="~/css/main-form.css" rel="stylesheet" />
+    <link rel="icon" href="~/images/logo2.png" type="image/x-icon">
+    @*<link href="~/css/site.css" rel="stylesheet" />*@
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="text-align:center;">
+    
+<h4 style="background-color:#54bab9; padding:20px; margin:0px;">Sign Up</h4>
+</div>
+<hr />
+@*            @if(ViewBag.alerts=="Registered")
+            {
+                <div class="alert alert-danger" role="alert">
+			        <strong>OOps!!</strong> <p>It looks like the user has been already Registered</p>
+		        </div>
+            }
+            
+            @if(ViewBag.alerts=="Success")
+	        {
+		        <div class="alert alert-success" role="alert">
+			        <strong>Congrats!!</strong><p>You have Sucessfully Registered</p>
+		        </div>
+
+	        }*@
+<div class="row">
+      <div class="container-50w">  
+          <form asp-action="signup" method="post" asp-controller="user" enctype="multipart/form-data"
+		                data-ajax="true" 
+                        data-ajax-complete="location.reload();">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         
+                        <div class="form-group">
+                            @*<label asp-for="name" class="control-label"></label>*@
+                            <input asp-for="name" class="form-control" placeholder="Name"/>
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                           @* <label asp-for="email" class="control-label"></label>*@
+                            <input asp-for="email" class="form-control" placeholder="Email Address"/>
+                            <span asp-validation-for="email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            @*<label asp-for="password" class="control-label"></label>*@
+                            <input asp-for="password" class="form-control" placeholder="Password" />
+                            <span asp-validation-for="password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                           @* <label asp-for="confirmpassword" class="control-label"></label>*@
+                            <input asp-for="confirmpassword" class="form-control" placeholder="Confirm Password"/>
+                            <span asp-validation-for="confirmpassword" class="text-danger"></span>
+                        </div>
+                   
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn-custom" />
+                        </div>
+                    </form>
+        <div style="text-align:center;">
+
+            <form asp-action="index" asp-controller="home">
+                <button onclick="/" class="btn-dngr" >Back</button>
+            </form>
+
+            
+        </div>
+     </div>   
+ 
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+<script src="~/lib/jquery/jquery.js"></script>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/jquery-validate/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>
+	<script>
+		function myComplete(){
+			alert("Completed");
+		}
+		
+		function mySuccess(){
+			alert("Succeed");
+		}
+		
+		function myFailure(){
+			alert("Failed");
+		}
+	</script>
+</html>

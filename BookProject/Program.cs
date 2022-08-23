@@ -13,12 +13,21 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAutoId, AutoId>();
 builder.Services.AddScoped<ILanguageOperation, LanguageOperation>();
 builder.Services.AddScoped<IBookOperation, BookOperation>();
+builder.Services.AddScoped<IUserOperations, UserOperations>();
 
 //In the following code, TestAlertConfig is added to the service container
 //with Configure and bound to configuration(to use IOptions for fetching data from appsettings.json file):
 
 builder.Services.Configure<TestAlertConfig>("MicrosoftBook", builder.Configuration.GetSection("Test"));
 builder.Services.Configure<TestAlertConfig>("GoogleBook", builder.Configuration.GetSection("Test2"));
+
+//Chganging password complexity
+
+//builder.Services.Configure<NewUserModel>(options =>
+//{
+//    options.password.
+//    });
+
 
 #if DEBUG
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -51,6 +60,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+//To use Log in
+app.UseAuthentication();
 
 //app.MapControllerRoute(
 //    name: "default",
