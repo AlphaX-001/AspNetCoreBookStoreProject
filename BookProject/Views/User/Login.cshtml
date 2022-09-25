@@ -1,0 +1,67 @@
+﻿@model BookProject.Models.OldUserModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/css/main-form.css" rel="stylesheet" />
+    <link rel="icon" href="~/images/logo2.png" type="image/x-icon">
+    @*<link href="~/css/site.css" rel="stylesheet" />*@
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="text-align:center;">   
+
+    <h4 style="background-color:#54bab9; padding:20px; margin:0px;">Log In</h4>
+</div>
+<hr />
+<div class="row">
+        <div class="container-50w">
+            <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="username" class="control-label"></label>
+                <input asp-for="username" class="form-control" placeholder="Email" />
+                <span asp-validation-for="username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" placeholder="Password"/>
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="rememberMe" /> @Html.DisplayNameFor(model => model.rememberMe)
+                </label>
+            </div>
+            <div class="form-group">
+                    <input type="submit" value="Sign In" class="btn-custom" />
+
+            </div>
+        </form>
+        <div class="form-group">
+                <form asp-route="homepage">
+                    <button onclick="/" class="btn-dngr">Go to Home</button>
+                </form>
+        </div>
+    </div>
+</div>
+
+<div style="text-align:center;">
+        <p>Don't have an account? <a asp-route="signup" asp-route-returnUrl="/">SIGN UP</a></p>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

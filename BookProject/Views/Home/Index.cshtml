@@ -2,6 +2,7 @@
     //ViewData["Title"] = "Home";
     //var book = ViewData["book"] as BookModel;     //Data Casting in View
     ViewData["home-active"] = "nav-guys-active";
+    ViewData["user-name"] = ViewBag.username;
 }   
 <section class="py-5 downnav text-center">
       <div class="container shadow-lg shad-div">
@@ -17,7 +18,7 @@
       </div>
 
   </section>
-  <div class="py-5 bg-light">
+<div class="py-5 bg-light">
       <div class="container">
 
           <div class="row">
@@ -92,7 +93,12 @@
 <br />
 <br />
 <br />
-
+@if (ViewBag.username != null)
+{
+    <script>
+       alert('log in Succesfull, Welcome @ViewBag.username');
+    </script>
+}
  @section Breadcrumb
   {
         <nav aria-label="breadcrumb">

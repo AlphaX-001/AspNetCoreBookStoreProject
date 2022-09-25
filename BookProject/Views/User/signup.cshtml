@@ -24,32 +24,21 @@
 <h4 style="background-color:#54bab9; padding:20px; margin:0px;">Sign Up</h4>
 </div>
 <hr />
-@*            @if(ViewBag.alerts=="Registered")
-            {
-                <div class="alert alert-danger" role="alert">
-			        <strong>OOps!!</strong> <p>It looks like the user has been already Registered</p>
-		        </div>
-            }
-            
-            @if(ViewBag.alerts=="Success")
-	        {
-		        <div class="alert alert-success" role="alert">
-			        <strong>Congrats!!</strong><p>You have Sucessfully Registered</p>
-		        </div>
-
-	        }*@
 <div class="row">
       <div class="container-50w">  
-          <form asp-action="signup" method="post" asp-controller="user" enctype="multipart/form-data"
-		                data-ajax="true" 
-                        data-ajax-complete="location.reload();">
+          <form asp-action="signup" method="post" asp-controller="user">
 
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
          
                         <div class="form-group">
                             @*<label asp-for="name" class="control-label"></label>*@
-                            <input asp-for="name" class="form-control" placeholder="Name"/>
-                            <span asp-validation-for="name" class="text-danger"></span>
+                            <input asp-for="fname" class="form-control" placeholder="Full Name"/>
+                            <span asp-validation-for="fname" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            @*<label asp-for="name" class="control-label"></label>*@
+                            <input asp-for="phone" class="form-control" placeholder="Contact No." />
+                            <span asp-validation-for="phone" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                            @* <label asp-for="email" class="control-label"></label>*@
@@ -71,18 +60,18 @@
                             <input type="submit" value="Submit" class="btn-custom" />
                         </div>
                     </form>
-        <div style="text-align:center;">
+                    <div style="text-align:center;">
+                        <form asp-route="homepage">
+                            <button onclick="/" class="btn-dngr" >Go to Home</button>
+                        </form>   
+                    </div>
 
-            <form asp-action="index" asp-controller="home">
-                <button onclick="/" class="btn-dngr" >Back</button>
-            </form>
-
-            
-        </div>
      </div>   
  
 </div>
-
+    <div style="text-align:center;margin-top:15px">
+        <p>Already have an account? <a asp-route="login" asp-route-returnUrl="/">LOG IN</a></p>
+    </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

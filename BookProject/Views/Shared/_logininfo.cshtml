@@ -1,0 +1,49 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<UsersOfApplication> _signinmanager
+<html>
+
+    <head>
+        <link href="~/css/Dropdown.css" rel="stylesheet" />
+    </head>
+    <body>
+    @if (_signinmanager.IsSignedIn(User))
+    {
+        @*<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <p style="padding:3px;color:#000;">Hello, @(User.FindFirst("User_Fullname").Value + "..")</p>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="width: 100%;padding: 15px;text-align: center;">
+                <a class="dropdown-item" asp-route="changepassword" asp-route-returnUrl="@Context.Request.Path">Change password </a>
+                <a class="dropdown-item" asp-route="signout" style="display: block;width: 100%;">Logout</a>
+            </div>
+        </li>*@
+        <div class="dropdown">
+            <button class="dropbtn">Hello, @(User.FindFirst("User_Fullname").Value)</button>
+            <div class="dropdown-content">
+                <a asp-route="changepassword" asp-route-returnUrl="@Context.Request.Path">Change password </a>
+                <a asp-route="signout" style="display: block;width: 100%;">Logout</a>
+       
+            </div>
+        </div>
+    }
+    else
+    {
+        <li class="nav-item text-center mx-2 mx-lg-1 fw-bold " style="margin-right:5px;">
+            <a class="button-log" asp-route="login" asp-route-returnUrl="@Context.Request.Path">
+                Login
+            </a>
+        </li>
+        <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
+            <a class="button-log" asp-route="signup" asp-route-returnUrl="@Context.Request.Path">
+                Sign up
+            </a>
+        </li>
+    }
+
+    </body>
+</html>
+ 
+
+
+
+
+

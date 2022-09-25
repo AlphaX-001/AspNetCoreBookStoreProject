@@ -46,19 +46,10 @@
                       <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="AllBooks">View Books</a>
                     </li>
                 </ul>
-                <ul class = "nav navbar-nav" style="float:right;">
-                    <li class="nav-item text-center mx-2 mx-lg-1 fw-bold ">
-                      <a class="box-button" style="padding: 10px;margin: 5px;" href="/login"> 
-                       Login
-                      </a>
-	                </li>
-        
-	                <li class="nav-item text-center mx-2 mx-lg-1 fw-bold">
-                      <a class="box-button" style="padding: 10px;margin: 5px;" href="/Signup">
-                        Sign up
-                      </a>
-                    </li>
-               </ul>
+             <ul class = "nav navbar-nav" style="float:right;">
+                
+                   <partial name="_logininfo" />
+            </ul>
              </div>
           </nav>
     </header>

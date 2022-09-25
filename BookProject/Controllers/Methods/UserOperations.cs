@@ -1,4 +1,4 @@
-﻿
+﻿//Not Implemented in this Project Because we are using Identity Framework
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Text;
@@ -44,7 +44,8 @@ namespace BookProject.Controllers.Methods
             SqlConnection conn = new SqlConnection(connectionstring);
             conn.Open();
             string sqlcmd1 = "SELECT * FROM BookAppUsers where email='"+user.email+"'";
-            string sqlcmd2 = "SELECT * FROM BookAppUsers where username='"+user.name+"'";
+            string sqlcmd2 = "";
+            /*"SELECT * FROM BookAppUsers where username='"+user.name+"'";*/
 
             SqlCommand sqlCommand1 = new SqlCommand(sqlcmd1,conn);
             SqlCommand sqlCommand2 = new SqlCommand(sqlcmd2,conn);
@@ -69,12 +70,36 @@ namespace BookProject.Controllers.Methods
                 string connectionstring = _configuration.GetConnectionString("DefaultConnection");
                 SqlConnection conn = new SqlConnection(connectionstring);
                 conn.Open();
-                string sqlcmd = "INSERT INTO BookAppUsers(id,username,email,passwordhash) VALUES('" + user.userid + "','" + user.name + "','" + user.email + "','" + _password + "')";
+                string sqlcmd = "";
+                    //"INSERT INTO BookAppUsers(id,username,email,passwordhash) VALUES('" + user.userid + "','" + user.name + "','" + user.email + "','" + _password + "')";
                 SqlCommand cmd = new SqlCommand(sqlcmd, conn);
                 await cmd.ExecuteNonQueryAsync();
                 return "Success";
             }
             return "Registered";
+        }
+        //Login
+        public async Task<string> LogInUser(OldUserModel user)
+        {
+            string res = "Success";
+            string _password = await EncryptPassword(user.password);
+            string connectionstring = _configuration.GetConnectionString("DefaultConnection");
+            DataTable dt = new DataTable();
+            SqlConnection conn = new SqlConnection(connectionstring);
+            conn.Open();
+            string sqlcmd = "select * from BookAppUsers where email='" + user.username + "' and passwordhash='"+ _password + "'"; 
+            SqlCommand cmd = new SqlCommand(sqlcmd,conn);
+            SqlDataReader sqlDataReader = await cmd.ExecuteReaderAsync();  
+            dt.Load(sqlDataReader);
+            if (dt.Rows.Count > 0)
+            {   
+               //Take username from here
+                return res;
+            }
+            else
+            {
+                return "Failed";
+            }
         }
 
     }

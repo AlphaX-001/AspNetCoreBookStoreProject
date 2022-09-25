@@ -6,9 +6,13 @@ namespace BookProject.Models
     {
         public string userid { get; set; }= Guid.NewGuid().ToString();
 
-        [Required(ErrorMessage = "Please enter your Name")]
+        [Required(ErrorMessage = "Please enter your Full Name")]
         [Display(Name = "Name")]
-        public string name { get; set; }
+        public string fname { get; set; }
+
+        [Required(ErrorMessage = "Please enter your Contact Number")]
+        [Display(Name = "Contact No")]
+        public string phone { get; set; }
 
         [Required(ErrorMessage = "Please enter your Email")]
         [Display(Name = "Email Address")]

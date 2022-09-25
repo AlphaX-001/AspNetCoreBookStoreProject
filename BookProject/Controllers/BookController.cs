@@ -1,9 +1,12 @@
 ﻿using BookProject.Controllers.Methods;
 using BookProject.Models;
 using BookProject.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
+
 
 namespace BookProject.Controllers
 {
@@ -20,17 +23,17 @@ namespace BookProject.Controllers
 
         IBookOperation _bookOperation;
         //ILanguageOperation _languageOperation;
-       
+        SignInManager<UsersOfApplication> _signinmanager;
         public BookController(IConfiguration _configuration,
             IWebHostEnvironment webHostEnvironment,
             IBookOperation bookOperation,
-            ILanguageOperation languageOperation)        
+            ILanguageOperation languageOperation, SignInManager<UsersOfApplication> signinmanager)        
         {
             Configuration = _configuration;
             _bookOperation = bookOperation;
             //_languageOperation = languageOperation;
             _webhost = webHostEnvironment;
-            
+            _signinmanager = signinmanager;
 
         }
 
@@ -74,9 +77,10 @@ namespace BookProject.Controllers
         //}
         //[Route("~/add-books")]
         [HttpGet]
-        public IActionResult AddNewBook(string? result, string? id)        
+        [Authorize]
+        public IActionResult AddNewBook(string? result)        
         {
-            ViewBag.id=id;
+            //ViewBag.id=id;
             ViewBag.result=result;
             //ViewBag.Language = new SelectList(GetLanguage(),"Id","Text");
             //ViewBag.Language = _languageOperation.AllLang();
