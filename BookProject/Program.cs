@@ -23,12 +23,16 @@ builder.Services.AddScoped<IUserOperations, UserOperations>();
 builder.Services.AddScoped<IAccountManager, AccountManager>();
 builder.Services.AddScoped<IUserServices, UserServices>();
 builder.Services.AddScoped<IUserClaimsPrincipalFactory<UsersOfApplication>, ApplicationUserClaimsPrincipalFactory>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 //In the following code, TestAlertConfig is added to the service container
 //with Configure and bound to configuration(to use IOptions for fetching data from appsettings.json file):
 
 builder.Services.Configure<TestAlertConfig>("MicrosoftBook", builder.Configuration.GetSection("Test"));
 builder.Services.Configure<TestAlertConfig>("GoogleBook", builder.Configuration.GetSection("Test2"));
+
+//Registering the SMTPConfig.cs to read values from appsettings.json file using IOptions
+builder.Services.Configure<SMTPConfigModel>(builder.Configuration.GetSection("SMTPConfig"));
 
 //Customizing the Password Complexity
 builder.Services.Configure<IdentityOptions>(options =>
@@ -39,6 +43,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireDigit=false;
     options.Password.RequireUppercase = false;
+
+    //For Allowing only those users who confirmed their Accounts
+    options.SignIn.RequireConfirmedEmail = true;
 
 });
 

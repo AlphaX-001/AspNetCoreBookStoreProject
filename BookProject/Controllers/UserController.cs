@@ -82,8 +82,16 @@ namespace BookProject.Controllers
                         return LocalRedirect(returnUrl);
                     }
                     return RedirectToAction("Index","Home");
-                }    
-                ModelState.AddModelError("", "Invalid Credentials");
+                }
+                if(result.IsNotAllowed)
+                {
+                    ModelState.AddModelError("", "Your Email is not Confirmed Yet");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid Credentials");
+                }
+                
            
             }
             return View();

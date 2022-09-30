@@ -13,12 +13,14 @@ namespace BookProject.Controllers
         //private readonly ILogger<HomeController> _logger;
         //IConfiguration _configuration;
         IUserServices _userServices;
-       //TestAlertConfig _AlertConfiguration1;
-       //TestAlertConfig _AlertConfiguration2;
+        private readonly IEmailService _emailService;
 
-       [ViewData]
+        //TestAlertConfig _AlertConfiguration1;
+        //TestAlertConfig _AlertConfiguration2;
+
+        [ViewData]
         public string Title { get; set; }
-        public HomeController(IOptionsMonitor<TestAlertConfig> AlertConfiguration, IUserServices userServices)
+        public HomeController(IOptionsMonitor<TestAlertConfig> AlertConfiguration, IUserServices userServices, IEmailService emailService)
         {
             //_logger = logger;
             //bookRepo = new BookRepo();
@@ -29,8 +31,7 @@ namespace BookProject.Controllers
             //_AlertConfiguration1 = AlertConfiguration.Get("MicrosoftBook");
             //_AlertConfiguration2 = AlertConfiguration.Get("GoogleBook");
             _userServices=userServices;
-
-
+            _emailService = emailService;
         }
         [Route("~/{username?}",Name ="homepage")]
         public IActionResult Index()
@@ -49,11 +50,21 @@ namespace BookProject.Controllers
             return View();
         }
        
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
             //It will access the User details
             //var res = _userServices.getUserId();
             //var isLoggedIn = _userServices.isAuthenticated();
+            UserEmailOptions options= new UserEmailOptions
+            {
+                EmailAddresses = new List<string> { "anithbairagi8@gmail.com" },
+                Placeholders= new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string, string>("{{UserName}}","Jeet")   
+                }
+            };
+            await _emailService.SendTestEmail(options);
+
             return View(); 
             
         }
