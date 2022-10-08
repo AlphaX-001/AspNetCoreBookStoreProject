@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        a{
+            background-color: #673694;
+            color: #ffffff;
+            padding: .8em 2em;
+            text-decoration: none;
+            width: 160px;
+            display: block;
+            text-align: center;
+            border-radius: 4px
+        }
+        a:hover {
+            background-color: #b580e6;
+            color: #000;
+            text-decoration: none;
+        }
+        .main-sec {
+            width: 70%;
+            background: #d7d4e9;
+            padding: 30px;
+        }
+
+        img {
+            height: 40px;
+            width: 100px;
+            margin: 25px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-sec">
+        <!--<img src="~/wwwroot/images/logo.png">-->
+        <p>
+            Welcome <b>{{UserName}}</b> ,<br />
+            Thanks for signing up with <b>SoftPages Online Library</b> !<br />
+            You must Click on this button to activate your account:
+        </p>
+        <br />
+        <a href="{{Link}}" style="color:white" target="_blank">Verify Email</a>
+        <br />
+        <p>
+            Have fun reading, and don't hesitate to contact us with your feedback.
+        </p>
+    </div>
+</body>
+</html>

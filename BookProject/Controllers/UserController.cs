@@ -51,7 +51,11 @@ namespace BookProject.Controllers
                     }
 
                 }
-                return RedirectToAction("login");
+                else
+                {
+                    return RedirectToAction("login");
+                }
+                
             }
            return View();
         }

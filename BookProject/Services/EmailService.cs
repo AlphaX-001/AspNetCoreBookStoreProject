@@ -1,5 +1,6 @@
 ﻿using BookProject.Models;
 using Microsoft.Extensions.Options;
+using System.Drawing;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -23,10 +24,18 @@ namespace BookProject.Services
             await SendEmail(userEmailOptions);
         }
 
+        public async Task SendEmailForEmailConfirmation(UserEmailOptions userEmailOptions)
+        {
+            userEmailOptions.Subject = UpdatePlaceholders("Hello {{UserName}}, Confirm your E-Mail Address..!! ", userEmailOptions.Placeholders);
+            userEmailOptions.Body = UpdatePlaceholders(
+                GetEmailBody("EmailConfirmation"), userEmailOptions.Placeholders);
+            await SendEmail(userEmailOptions);
+        }
         private async Task SendEmail(UserEmailOptions userEmailOptions)
         {
             MailMessage mail = new MailMessage
             {
+                
                 Subject = userEmailOptions.Subject,
                 Body = userEmailOptions.Body,
                 From = new MailAddress(_smtpConfig.SenderAddress, _smtpConfig.SenderDisplayName),

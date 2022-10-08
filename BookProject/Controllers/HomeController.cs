@@ -55,15 +55,19 @@ namespace BookProject.Controllers
             //It will access the User details
             //var res = _userServices.getUserId();
             //var isLoggedIn = _userServices.isAuthenticated();
-            UserEmailOptions options= new UserEmailOptions
-            {
-                EmailAddresses = new List<string> { "anithbairagi8@gmail.com" },
-                Placeholders= new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("{{UserName}}","Jeet")   
-                }
-            };
-            await _emailService.SendTestEmail(options);
+
+
+            //To Send a test Email ////
+
+            //UserEmailOptions options= new UserEmailOptions
+            //{
+            //    EmailAddresses = new List<string> { "anithbairagi8@gmail.com" },
+            //    Placeholders= new List<KeyValuePair<string, string>>
+            //    {
+            //        new KeyValuePair<string, string>("{{UserName}}","Jeet")   
+            //    }
+            //};
+            //await _emailService.SendTestEmail(options);
 
             return View(); 
             

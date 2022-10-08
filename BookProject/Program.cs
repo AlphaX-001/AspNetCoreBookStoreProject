@@ -53,7 +53,7 @@ builder.Services.AddDbContext<BookStoreContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<UsersOfApplication, IdentityRole>().
-    AddEntityFrameworkStores<BookStoreContext>();
+    AddEntityFrameworkStores<BookStoreContext>().AddDefaultTokenProviders();
 
 
 #if DEBUG
