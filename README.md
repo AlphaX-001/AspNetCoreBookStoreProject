@@ -23,6 +23,10 @@ After user clicks on the link and verifies his email he is free to log in/Sign i
 
 ![image](https://user-images.githubusercontent.com/67215990/199087015-d9a5a0b3-23ca-4b47-89d6-1e9bbba2540c.png)
 
+Auser can also change his/her Password :
+
+![image](https://user-images.githubusercontent.com/67215990/199089147-9fe807b8-c959-479e-b480-6984feed30c2.png)
+
 After Signing in user is free to add books :
 
 ![image](https://user-images.githubusercontent.com/67215990/199088114-f9f32798-6ca1-41ad-848f-dd6ff425081a.png)
