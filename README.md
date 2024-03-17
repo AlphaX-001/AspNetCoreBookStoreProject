@@ -26,12 +26,12 @@ and can read any book available there.
 
 ## After Signing up the Email which is sent to the user's email address is:
 
-![image](https://github.com/AlphaX-001/AspNetCoreBookStoreProject/assets/67215990/730cc96a-6a13-4b35-8fa5-4a2696f6e82f)
+![image](https://user-images.githubusercontent.com/67215990/199086812-28b2a44f-397d-400f-a768-174f59b910de.png)
 
 
 ## After user clicks on the link and verifies his email he is free to log in/Sign in :
 
-![image](https://user-images.githubusercontent.com/67215990/199087015-d9a5a0b3-23ca-4b47-89d6-1e9bbba2540c.png)
+![image](https://github.com/AlphaX-001/AspNetCoreBookStoreProject/assets/67215990/730cc96a-6a13-4b35-8fa5-4a2696f6e82f)
 
 
 ## An user can also change his/her Password :
